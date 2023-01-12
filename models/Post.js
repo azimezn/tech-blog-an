@@ -19,23 +19,26 @@ Post.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      // reference?
-      // we will use user id to reference. delete username
-    },
     date: {
       type: DataTypes.DATE,
       allowNull: false,
-      // double check on date
-      defaultValue: Date.now(),
+      defaultValue: DataTypes.NOW,
     },
-    comments: {
+    user_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+    },
+    comment_id: {
       type: DataTypes.TEXT,
       allowNull: false,
-      // reference?
-      // comment id
+      references: {
+        model: 'comment',
+        key: 'id',
+      },
     }
   },
   {

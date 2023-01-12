@@ -11,11 +11,6 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        username: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            // refernce user_id
-        },
         body: {
             type: DataTypes.TEXT,
             allowNull: false,
@@ -23,14 +18,28 @@ Comment.init(
         date: {
             type: DataTypes.DATE,
             allowNull: false,
-            // double check on date
-            // also is date optional
-            defaultValue: Date.now(),
-        }
+            defaultValue: DataTypes.NOW,
+        },
+        post_id: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'post',
+                key: 'id',
+            },
+        },
+        user_id: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'user',
+                key: 'id',
+            },
+        },
     },
     {
         sequelize,
-        timestamps: false,
+        timestamps: true,
         freezeTableName: true,
         underscored: true,
         modelName: 'comment',
