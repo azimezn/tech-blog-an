@@ -10,11 +10,15 @@ router.get('/', withAuth, async (req, res) => {
         res.json(err);
     });
     const posts = postData.map((post) => post.get({ plain: true }));
-    res.render('all', { posts });
+    res.render('post', { posts });
 });
 
 router.get("/login", async (req, res) => {
     res.render('login');
+})
+
+router.get("/dashboard", async (req, res) => {
+    res.render('dashboard');
 })
 
 module.exports = router;
