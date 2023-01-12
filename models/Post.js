@@ -25,16 +25,14 @@ Post.init(
       defaultValue: DataTypes.NOW,
     },
     user_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.INTEGER,
       references: {
         model: 'user',
         key: 'id',
       },
     },
     comment_id: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+      type: DataTypes.INTEGER,
       references: {
         model: 'comment',
         key: 'id',

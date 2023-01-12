@@ -46,5 +46,3 @@ User.init(
 )
 
 module.exports = User;
-
-// need hooks for password hashing
