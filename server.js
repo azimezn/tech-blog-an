@@ -10,11 +10,18 @@ const sequelize = require('./config/connection');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Set up sessions
+// Set up sessions with cookies
 const sess = {
   secret: process.env.SECRET,
+  cookie: {
+    // Stored in milliseconds
+    maxAge: 24 * 60 * 60 * 1000, // expires after 1 day
+  },
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
 };
 
 app.use(session(sess));
