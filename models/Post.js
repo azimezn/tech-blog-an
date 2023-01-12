@@ -23,16 +23,19 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false,
       // reference?
+      // we will use user id to reference. delete username
     },
     date: {
       type: DataTypes.DATE,
       allowNull: false,
-      // auto???
+      // double check on date
+      defaultValue: Date.now(),
     },
     comments: {
       type: DataTypes.TEXT,
       allowNull: false,
       // reference?
+      // comment id
     }
   },
   {
