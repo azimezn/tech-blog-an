@@ -13,4 +13,8 @@ router.get('/', withAuth, async (req, res) => {
     res.render('all', { posts });
 });
 
+router.get("/login", async (req, res) => {
+    res.render('login');
+})
+
 module.exports = router;
