@@ -24,20 +24,13 @@ Post.init(
     //   allowNull: false,
     //   defaultValue: DataTypes.NOW,
     // },
-    // user_id: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: 'user',
-    //     key: 'id',
-    //   },
-    // },
-    // comment_id: {
-    //   type: DataTypes.INTEGER,
-    //   references: {
-    //     model: 'comment',
-    //     key: 'id',
-    //   },
-    // }
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+    },
   },
   {
     sequelize,
