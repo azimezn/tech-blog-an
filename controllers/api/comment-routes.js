@@ -3,6 +3,7 @@ const Comment = require('../../models/Comment');
 
 // GET all comments
 router.get('/', async (req, res) => {
+    console.log("--- im in the comment routes get /")
     try {
         const commentData = await Comment.findAll();
         res.status(200).json(commentData);
@@ -13,12 +14,16 @@ router.get('/', async (req, res) => {
 
 // CREATE a new comment
 router.post('/', async (req, res) => {
+    console.log("--- im in the comment routes post /")
+    console.log("--- creating a new comment")
     try {
         const commentData = await Comment.create({
             body: req.body.body,
             user_id: req.session.user_id,
-            post_id: postID,
+            post_id: req.body.postID,
         });
+        console.log("user id: ", req.session.user.id);
+        console.log("post ide: ", req.body.postID);
         console.log(commentData);
         res.status(200).json(commentData);
     } catch (err) {
@@ -28,6 +33,7 @@ router.post('/', async (req, res) => {
 
 // DELETE a comment
 router.delete('/:id', async (req, res) => {
+    console.log("--- im in the post routes delete /:id")
     try {
         const commentData = await Comment.destroy({
             where: {

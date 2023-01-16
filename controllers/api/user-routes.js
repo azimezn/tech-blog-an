@@ -2,18 +2,23 @@ const router = require('express').Router();
 const User = require('../../models/User');
 
 // CREATE a new user
+// api/users/
 router.post('/', async (req, res) => {
-    console.log(req.body);
+    console.log("--- im in the user routes post /")
+    console.log("--- creating a new user")
+    console.log("--- req.body: ", req.body);
+    console.log("--- req.session: ", req.session)
     try {
         // req.body = { username: req.body.username, password: req.body.password }
         const userData = await User.create(req.body);
-        console.log(userData);
-        // console.log(userData.id);
+        console.log("--- userData: ", userData);
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.loggedIn = true;
 
             res.status(200).json(userData);
+        console.log("--- user_id (should be the same): ", req.session.user_id, userData.id)
+        console.log("--- session loggedin? (should be true): ", req.session.loggedIn)
         });
 
     } catch (err) {
@@ -23,7 +28,9 @@ router.post('/', async (req, res) => {
 });
 
 // Login
+// api/users/login
 router.post('/login', async (req, res) => {
+    console.log("--- im in the user routes post /login")
     try {
         const userData = await User.findOne({
             where: {
@@ -65,7 +72,9 @@ router.post('/login', async (req, res) => {
 });
 
 // Logout
+// api/users/logout
 router.post('/logout', (req, res) => {
+    console.log("--- im in the user routes post /logout")
     if (req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();

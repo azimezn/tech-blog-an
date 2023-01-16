@@ -5,6 +5,7 @@ const withAuth = require('../../utils/auth');
 // GET all posts
 // api/posts
 router.get('/', withAuth, async (req, res) => {
+    console.log("--- im in the post routes get /")
     try {
         const postData = await Post.findAll({
             include: [{ model: User }, { model: Comment }],
@@ -19,7 +20,7 @@ router.get('/', withAuth, async (req, res) => {
 // GET one post
 // api/posts/:id
 router.get('/:id', async (req, res) => {
-    console.log("im in the post/:id")
+    console.log("--- im in the post routes get /:id")
     try {
         const postData = await Post.findOne({
             include: [{ model: User }, { model: Comment }],
@@ -39,7 +40,7 @@ router.get('/:id', async (req, res) => {
         const commentData = await Comment.findAll({
             where: { post_id: post.id }
         })
-        console.log("comment data: ", commentData);
+        console.log("--- comment data: ", commentData);
 
         // res.status(200).json(post);
         res.render('post', { post, postID, commentData });
@@ -51,6 +52,8 @@ router.get('/:id', async (req, res) => {
 
 // CREATE a new post
 router.post('/', async (req, res) => {
+    console.log("--- im in the post routes post /")
+    console.log("--- creating a new post")
     try {
         const postData = await Post.create({
             title: req.body.title,
@@ -66,6 +69,7 @@ router.post('/', async (req, res) => {
 
 // DELETE a post
 router.delete('/:id', async (req, res) => {
+    console.log("--- im in the post routes delete /:id")
     try {
         const postData = await Post.destroy({
             where: {
