@@ -13,14 +13,14 @@
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
-        <span role="img" aria-label="money">💸</span>
         <a href="/">Tech Blog!</a>
       </h1>
       <nav>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
         <a href="/dashboard">dashboard</a> |
-        <button class="no-button" id="logout">logout</button>
+        {{!-- <button class="no-button" id="logout">logout</button> --}}
+        <a href="/login">logout</a>
         {{else}}
         <a href="/login">login</a>
         {{/if}}
