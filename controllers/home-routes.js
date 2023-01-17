@@ -34,7 +34,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
     // console.log("--- postData: ", postData);
     const posts = postData.map((post) => post.get({ plain: true }));
     console.log("--- posts: ", posts);
-    res.render('dashboard', { posts });
+    res.render('dashboard', { posts, logged_in: req.session.loggedIn });
 })
 
 
@@ -62,7 +62,7 @@ router.get('/:id', async (req, res) => {
         // console.log("--- postID: ", postID);
 
         // res.status(200).json(post);
-        res.render('post', { post });
+        res.render('post', { post, logged_in: req.session.loggedIn });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
