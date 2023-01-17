@@ -1,18 +1,16 @@
 <p> -- you are in post handlebars --</p>
 <div class="text-center">
-  {{#each posts}}
-  <h2><a href="api/posts/{{this.id}}">{{this.title}}</a></h2>
-  {{!-- <p>Created by {{user.username}}</p> --}}
-  <p>{{this.content}}</p>
-  {{#each commentData}}
-  <p>{{this.body}}</p>
-  {{/each}}
+  <h2>{{post.title}}</h2>
+  <p>Created by {{post.user.username}}</p>
+  <p>{{post.content}}</p>
+  {{#each post.comments as |comment|}}
+  <p>{{comment.body}}</p>
   {{/each}}
   {{!-- <p><button class="btn btn-primary">comment</button></p> --}}
     <form class="form comment-form">
       <div class="form-group">
         <label for="comment-content">comment:</label>
-        <input class="form-input" type="text" id="comment-content" />
+        <input class="form-input" type="text" id="{{post.id}}" />
       </div>
       <div class="form-group">
         <button class="btn btn-primary" type="submit">submit</button>
@@ -20,4 +18,4 @@
     </form>
 </div>
 
-<script src="./js/comment.js"></script>
+<script src="/js/comment.js"></script>

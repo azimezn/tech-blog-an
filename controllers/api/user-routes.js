@@ -6,8 +6,8 @@ const User = require('../../models/User');
 router.post('/', async (req, res) => {
     console.log("--- im in the user routes post /")
     console.log("--- creating a new user")
-    console.log("--- req.body: ", req.body);
-    console.log("--- req.session: ", req.session)
+    // console.log("--- req.body: ", req.body);
+    // console.log("--- req.session: ", req.session)
     try {
         // req.body = { username: req.body.username, password: req.body.password }
         const userData = await User.create(req.body);
@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
             req.session.loggedIn = true;
 
             res.status(200).json(userData);
-        console.log("--- user_id (should be the same): ", req.session.user_id, userData.id)
+        // console.log("--- user_id (should be the same): ", req.session.user_id, userData.id)
         console.log("--- session loggedin? (should be true): ", req.session.loggedIn)
         });
 

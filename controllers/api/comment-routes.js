@@ -13,18 +13,19 @@ router.get('/', async (req, res) => {
 });
 
 // CREATE a new comment
+// /api/comments/
 router.post('/', async (req, res) => {
     console.log("--- im in the comment routes post /")
     console.log("--- creating a new comment")
+    console.log("user id: ", req.session.user_id);
+    console.log("post id: ", req.body.postID);
     try {
         const commentData = await Comment.create({
             body: req.body.body,
             user_id: req.session.user_id,
             post_id: req.body.postID,
         });
-        console.log("user id: ", req.session.user.id);
-        console.log("post ide: ", req.body.postID);
-        console.log(commentData);
+        console.log("--- commentData: ", commentData);
         res.status(200).json(commentData);
     } catch (err) {
         res.status(400).json(err);

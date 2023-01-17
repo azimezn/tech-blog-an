@@ -1,17 +1,20 @@
 const commentFormHandler = async (event) => {
   event.preventDefault();
 
-  const comment = document.querySelector('#comment-content').value.trim();
+  console.log("--- im in comment.js")
 
-  if (comment) {
+  const body = document.querySelector('.form-input').value.trim();
+  const postID = document.querySelector('.form-input').id;
+
+  if (body) {
     const response = await fetch('/api/comments', {
       method: 'POST',
-      body: JSON.stringify({ body: comment }),
+      body: JSON.stringify({ body, postID }),
       headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-      document.location.replace(`/api/posts/${postID}`);
+      document.location.replace(`/${postID}`);
     } else {
       alert(response.statusText);
     }
