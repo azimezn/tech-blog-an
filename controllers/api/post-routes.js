@@ -19,6 +19,11 @@ router.post('/', async (req, res) => {
     }
 });
 
+//UPDATE a post
+router.put('/postupdate/:id', async (req, res) => {
+    console.log("--- im in the post routes delete /:id")
+})
+
 // DELETE a post
 router.delete('/:id', async (req, res) => {
     console.log("--- im in the post routes delete /:id")

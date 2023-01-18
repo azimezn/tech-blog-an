@@ -28,6 +28,9 @@ router.get("/dashboard", withAuth, async (req, res) => {
     console.log("--- im in the home routes /dashboard")
     const postData = await Post.findAll({
         include: [{ model: User }, { model: Comment }],
+        where: {
+            user_id: req.session.user_id,
+          },
     }).catch((err) => {
         res.json(err);
     });
@@ -52,14 +55,17 @@ router.get('/:id', async (req, res) => {
                     id: req.params.id,
                 },
             });
+        console.log("--- req.params.id: ", req.params.id)
+        // console.log("--- post_id: ", post_id)
+
         if (!postData) {
             res.status(404).json({ message: 'No post with this id!' });
             return;
         }
         const post = postData.get({ plain: true });
         console.log("--- post: ", post);
-        // const postID = post.id
-        // console.log("--- postID: ", postID);
+        const postID = req.params.id
+        console.log("--- postID: ", postID);
 
         // res.status(200).json(post);
         res.render('post', { post, logged_in: req.session.loggedIn });
