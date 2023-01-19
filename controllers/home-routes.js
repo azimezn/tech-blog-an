@@ -47,13 +47,11 @@ router.get('/post/:id', withAuth, async (req, res) => {
     console.log("--- im in the home routes get /:id")
     try {
         const postData = await Post.findOne({
+            where: {
+                id: req.params.id,
+            },
             include: [{ model: User }, { model: Comment }],
-        },
-            {
-                where: {
-                    id: req.params.id,
-                },
-            });
+        });
         console.log("--- req.params.id: ", req.params.id)
         // console.log("--- post_id: ", post_id)
 
@@ -76,17 +74,15 @@ router.get('/post/:id', withAuth, async (req, res) => {
 
 // GET one post (to update)
 // /postupdate/:id
-router.get('/postupdate/:id', async (req, res) => {
+router.get('/postupdate/:id', withAuth, async (req, res) => {
     console.log("--- im in the home routes get /postupdate/:id")
     try {
         const postData = await Post.findOne({
             include: [{ model: User }, { model: Comment }],
-        },
-            {
-                where: {
-                    id: req.params.id,
-                },
-            });
+            where: {
+                id: req.params.id,
+            },
+        });
         console.log("--- req.params.id: ", req.params.id)
         // console.log("--- post_id: ", post_id)
 
