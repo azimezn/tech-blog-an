@@ -17,8 +17,8 @@ router.post('/', async (req, res) => {
             req.session.loggedIn = true;
 
             res.status(200).json(userData);
-        // console.log("--- user_id (should be the same): ", req.session.user_id, userData.id)
-        console.log("--- session loggedin? (should be true): ", req.session.loggedIn)
+            // console.log("--- user_id (should be the same): ", req.session.user_id, userData.id)
+            console.log("--- session loggedin? (should be true): ", req.session.loggedIn)
         });
 
     } catch (err) {
@@ -55,6 +55,7 @@ router.post('/login', async (req, res) => {
         }
 
         req.session.save(() => {
+            req.session.user_id = userData.id;
             req.session.loggedIn = true;
             console.log(
                 '🚀 ~ file: user-routes.js ~ line 57 ~ req.session.save ~ req.session.cookie',
