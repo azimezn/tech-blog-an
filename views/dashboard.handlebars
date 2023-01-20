@@ -1,13 +1,5 @@
-<p> -- you are in dashboard handlebars --</p>
-
-{{!-- any blog post i have already created, option to add a new blog post --}}
-
-
-
-
 <div class="row">
   <div class="col-auto">
-    {{!-- <h2>Welcome, {{username}}!</h2> --}}
     <h2>Welcome!</h2>
   </div>
 </div>
@@ -42,7 +34,6 @@
       </div>
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger delete-button" data-id="{{post.id}}">DELETE</button>
-        {{!-- <button class="btn btn-sm btn-danger update-button" data-id="{{post.id}}">EDIT</button> --}}
         <a href="/postupdate/{{post.id}}"><button class="btn btn-sm btn-danger">EDIT</button></a>
       </div>
     </div>

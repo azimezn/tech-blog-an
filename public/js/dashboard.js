@@ -37,28 +37,6 @@ const delButtonHandler = async (event) => {
   }
 };
 
-// const updButtonHandler = async (event) => {
-//   console.log("--- in updButtonHandler")
-//   if (event.target.hasAttribute('data-id')) {
-//     const id = event.target.getAttribute('data-id');
-
-//     const response = await fetch(`/api/posts/${id}`, {
-//       method: 'GET',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       }
-//     });
-
-//     console.log("--- response: ", response)
-//     if (response.ok) {
-//       document.location.replace(`/postupdate/${id}`);
-//     } else {
-//       alert('Failed to get post on another page');
-//     }
-//   }
-// };
-
-
 document
   .querySelector('.new-post-form')
   .addEventListener('submit', newFormHandler);
@@ -66,7 +44,3 @@ document
 document.querySelectorAll('.delete-button').forEach(button => {
   button.addEventListener('click', delButtonHandler);
 });
-
-// document.querySelectorAll('.update-button').forEach(button => {
-//   button.addEventListener('click', updButtonHandler);
-// });

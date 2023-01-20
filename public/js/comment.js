@@ -1,8 +1,6 @@
 const commentFormHandler = async (event) => {
   event.preventDefault();
 
-  console.log("--- im in comment.js")
-
   const body = document.querySelector('.form-input').value.trim();
   const postID = document.querySelector('.form-input').id;
 
@@ -14,7 +12,7 @@ const commentFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace(`/${postID}`);
+      document.location.replace(`/post/${postID}`);
     } else {
       alert(response.statusText);
     }

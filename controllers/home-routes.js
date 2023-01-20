@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
         })
         const posts = postData.map((post) => post.get({ plain: true }));
         console.log("--- all posts: ", posts, "--- now it should render to the post handlebars with the posts");
-        
+
         res.render('homepage', { posts, logged_in: req.session.loggedIn });
     } catch (err) {
         console.log(err);
@@ -44,27 +44,21 @@ router.get("/dashboard", withAuth, async (req, res) => {
 // GET one post
 // /:id
 router.get('/post/:id', withAuth, async (req, res) => {
-    console.log("--- im in the home routes get /:id")
     try {
         const postData = await Post.findOne({
             where: {
                 id: req.params.id,
             },
-            include: [{ model: User }, { model: Comment }],
+            include: [{ model: User }, { model: Comment, include: [{ model: User }] }],
         });
         console.log("--- req.params.id: ", req.params.id)
-        // console.log("--- post_id: ", post_id)
 
         if (!postData) {
             res.status(404).json({ message: 'No post with this id!' });
             return;
         }
         const post = postData.get({ plain: true });
-        console.log("--- post: ", post);
-        const postID = req.params.id
-        console.log("--- postID: ", postID);
 
-        // res.status(200).json(post);
         res.render('post', { post, logged_in: req.session.loggedIn });
     } catch (err) {
         console.log(err);
@@ -75,7 +69,6 @@ router.get('/post/:id', withAuth, async (req, res) => {
 // GET one post (to update)
 // /postupdate/:id
 router.get('/postupdate/:id', withAuth, async (req, res) => {
-    console.log("--- im in the home routes get /postupdate/:id")
     try {
         const postData = await Post.findOne({
             include: [{ model: User }, { model: Comment }],
@@ -83,15 +76,12 @@ router.get('/postupdate/:id', withAuth, async (req, res) => {
                 id: req.params.id,
             },
         });
-        console.log("--- req.params.id: ", req.params.id)
-        // console.log("--- post_id: ", post_id)
 
         if (!postData) {
             res.status(404).json({ message: 'No post with this id!' });
             return;
         }
         const post = postData.get({ plain: true });
-        console.log("--- post: ", post);
 
         res.render('postupdate', { post, logged_in: req.session.loggedIn });
     } catch (err) {

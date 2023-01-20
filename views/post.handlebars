@@ -1,12 +1,10 @@
-<p> -- you are in post handlebars --</p>
 <div class="text-center">
   <h2>{{post.title}}</h2>
   <p>Created by {{post.user.username}} on {{format_date post.createdAt}}</p>
   <p>{{post.content}}</p>
   {{#each post.comments as |comment|}}
-  <p>- {{comment.body}} - by {{comment.user.user_id}} on {{format_date comment.createdAt}}</p>
+  <p>- {{comment.body}} - by {{comment.user.username}} on {{format_date comment.createdAt}}</p>
   {{/each}}
-  {{!-- <p><button class="btn btn-primary">comment</button></p> --}}
   <form class="form comment-form">
     <div class="form-group">
       <label for="comment-content">comment:</label>
