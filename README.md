@@ -14,7 +14,7 @@ A blog where you can sign up, login, create/edit/delete a post, or comment on ot
 ## Installation
 
 You can reach this webpage through any web browser. No installation is required.
-https://azimezn.github.io/tech-blog-an/
+https://tech-blog-azn.herokuapp.com/
 
 ## Usage
 
